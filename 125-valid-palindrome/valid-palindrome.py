@@ -1,19 +1,17 @@
-
 class Solution:
-    def checkPalindrome(self,s,start,end):
+    def check_palindrome(self,s,start,end):
         if start>end:
             return True
         else:
-            if s[start]==s[end]:
-                start+=1;end-=1;
-                return self.checkPalindrome(s,start,end);
-            else:
-                return False; 
+            if s[start]!=s[end]:
+                return False
+            else: 
+                return self.check_palindrome(s,start+1,end-1)
     def isPalindrome(self, s: str) -> bool:
-        s = s.replace(" ","")
+        s = re.sub("[^A-Za-z0-9]","",s)
+        s = re.sub(" ","",s)
         s = s.lower()
-        ascii_string = "aasdfghjklqwertyuiopzxcvbnm1234567890"
-        s = "".join([i for i in s if i in ascii_string])
-        return self.checkPalindrome(s,0,len(s)-1)
+        print(s)
+        return self.check_palindrome(s,0,len(s)-1)
 
         
