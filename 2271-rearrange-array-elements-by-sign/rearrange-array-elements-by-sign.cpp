@@ -2,25 +2,17 @@
 class Solution {
 public:
     vector<int> rearrangeArray(vector<int>& nums) {
-        queue<int> odd_queue;
-        queue<int> even_queue;
+        vector<int> result(nums.size(),0);
+        int pos = 0;int neg =1;
         for(int i=0;i<nums.size();i++){
-            if(nums[i]>0)
-                even_queue.push(nums[i]);
-            else
-                odd_queue.push(nums[i]);
-        }
-        vector<int> result;int value;
-        for(int i=0;i<nums.size();i++){
-            if(i%2==0){
-                value = even_queue.front();
-                even_queue.pop();
+            if(nums[i]>0){
+                result[pos]=nums[i];
+                pos+=2;
             }
             else{
-                value = odd_queue.front();
-                odd_queue.pop();
+                result[neg] = nums[i];
+                neg+=2;
             }
-            result.push_back(value);
         }
         return result;
     }
